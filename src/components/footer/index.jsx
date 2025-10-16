@@ -1,7 +1,9 @@
+import './style.css';
+
 const Footer = () => {
     return (
         <footer className="footer-container">
-            <p>© 2024 Minha Loja. Todos os direitos reservados.</p>
+            <p className="footer-title">Direitos Autorais. 2025.</p>
         </footer>
     );
 };
