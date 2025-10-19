@@ -1,0 +1,76 @@
+{
+  "produtos": [
+    {
+      "id": "1",
+      "nome": "prod1",
+      "descricao": "prod1",
+      "preco": 899.99,
+      "imagem": "fundo-preto.jpg",
+      "quantidade": 10,
+      "nota": 4.5
+    },
+    {
+      "id": "2",
+      "nome": "prod2",
+      "descricao": "prod2",
+      "preco": 2299.99,
+      "imagem": "fundo-preto.jpg",
+      "quantidade": 10,
+      "nota": 3
+    },
+    {
+      "id": "3",
+      "nome": "prod3",
+      "descricao": "prod3",
+      "preco": 1299.99,
+      "imagem": "fundo-preto.jpg",
+      "quantidade": 10,
+      "nota": 5
+    },
+    {
+      "id": "4",
+      "nome": "prod4",
+      "descricao": "prod4",
+      "preco": 499.99,
+      "imagem": "fundo-preto.jpg",
+      "quantidade": 10,
+      "nota": 2.5
+    },
+    {
+      "id": "5",
+      "nome": "prod5",
+      "descricao": "prod5",
+      "preco": 1599.99,
+      "imagem": "fundo-preto.jpg",
+      "quantidade": 0,
+      "nota": 4
+    },
+    {
+      "id": "6",
+      "nome": "prod6",
+      "descricao": "prod6",
+      "preco": 299.99,
+      "imagem": "fundo-preto.jpg",
+      "quantidade": 10,
+      "nota": 3.5
+    },
+    {
+      "id": "7",
+      "nome": "prod7",
+      "descricao": "prod7",
+      "preco": 799.99,
+      "imagem": "fundo-preto.jpg",
+      "quantidade": 10,
+      "nota": 4.8
+    },
+    {
+      "id": "8",
+      "nome": "prod8",
+      "descricao": "prod8",
+      "preco": 399.99,
+      "imagem": "fundo-preto.jpg",
+      "quantidade": 10,
+      "nota": 2
+    }
+  ]
+}

@@ -1,23 +1,77 @@
 import './style.css';
+import { useState, useEffect } from 'react';
+import { FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
 
-const listaProdutos = () => {
+const ListaProdutos = () => {
 
-    const produtos = [
-        {
-            id: 1,
-            nome: "prod1",
-            descricao: "prod1",
-            preco: 899.99,
-            imagem: "fundo-preto.jpg",
-        },
-        {
-            id: 2,
-            nome: "prod2",
-            descricao: "prod2",
-            preco: 2299.99,
-            imagem: "fundo-preto.jpg",
+    const [produtos, setProdutos] = useState([]);
+
+    useEffect(() => {
+        try {
+            const fetchProdutos = async () => {
+                const response = await fetch('http://localhost:3001/produtos');
+                const data = await response.json();
+                setProdutos(data);
+            };
+
+            fetchProdutos();
+        } catch (error) {
+            console.error('Erro ao buscar produtos:', error);
         }
-    ];
+    }, []);
+
+    const renderEstrelas = (nota) => {
+        const estrelas = [];
+        const fullEstrela = Math.floor(nota);
+        const meiaEstrela = nota % 1 !== 0;
+        const estrelaVazia = 5 - Math.ceil(nota);
+
+        for (let i = 0; i < fullEstrela; i++)
+            estrelas.push(<FaStar key={`full-${i}`} color="#FFD700" />);
+
+        if (meiaEstrela)
+            estrelas.push(<FaStarHalfAlt key="half" color="#FFD700" />);
+
+        for (let i = 0; i < estrelaVazia; i++)
+            estrelas.push(<FaRegStar key={`empty-${i}`} color="#FFD700" />);
+
+        return estrelas;
+    };
+
+    const handleComprar = async (produto) => {
+        if (produto.quantidade <= 0) {
+            alert('Produto indisponível no estoque!');
+            return;
+        }
+
+        try {
+            const novaQuantidade = produto.quantidade - 1;
+
+            const response = await fetch(`http://localhost:3001/produtos/${produto.id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    quantidade: novaQuantidade
+                }),
+            });
+
+            if (response.ok) {
+                alert('Compra realizada com sucesso!');
+
+                // Atualiza o estado local
+                setProdutos(produtos.map(p =>
+                    p.id === produto.id ? { ...p, quantidade: novaQuantidade } : p
+                ));
+            } else {
+                alert('Erro ao processar a compra. Tente novamente.');
+            }
+        } catch (error) {
+            console.error('Erro ao comprar produto:', error);
+            alert('Erro ao processar a compra. Tente novamente.');
+        }
+    };
 
     return (
         <div className="lista-produtos">
@@ -34,12 +88,24 @@ const listaProdutos = () => {
                         
                         <div className="produto-info">
                             <h3 className="produto-nome">{produto.nome}</h3>
+                            <div className="produto-nota">
+                                {renderEstrelas(produto.nota || 0)}
+                            </div>
                             <div className="produto-preco">
                                 <span className="preco-valor">R$ {produto.preco.toFixed(2).replace('.', ',')}</span>
                             </div>
-                            
+                            <div className="produto-estoque">
+                                <span>Estoque: {produto.quantidade}</span>
+                            </div>
+
                             <div className="produto-acoes">
-                                <button className="btn-comprar">Comprar Agora</button>
+                                <button
+                                    className="btn-comprar"
+                                    onClick={() => handleComprar(produto)}
+                                    disabled={produto.quantidade <= 0}
+                                >
+                                    {produto.quantidade > 0 ? 'Comprar Agora' : 'Indisponível'}
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -49,4 +115,4 @@ const listaProdutos = () => {
     );
 };
 
-export default listaProdutos;
+export default ListaProdutos;
