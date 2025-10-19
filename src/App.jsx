@@ -1,12 +1,17 @@
 import Footer from './components/footer'
 import ListaProdutos from './components/listaProdutos'
+import Header from './components/header'
 
 function App() {
 
   return (
     <>
-      <ListaProdutos />
-      <Footer />
+      <main>
+        <Header />
+        <ListaProdutos />
+        <Footer />
+      </main>
+      
     </>
   )
 }
