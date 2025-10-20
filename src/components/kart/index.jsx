@@ -2,7 +2,7 @@ const Kart = () => {
   return (
     <section className="d-flex flex-column">
       <h2 className="m-0">Carrinho</h2>
-      <article className="bg-secondary p-3 rounded">
+      <article className="p-3 rounded" style={{ backgroundColor: 'gray' }}>
         <h5 className="m-0">Itens: 3</h5>
         <h5 className="m-0">Total: R$ 680,00</h5>
         <article className="bg-light p-3">
