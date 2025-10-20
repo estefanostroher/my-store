@@ -1,3 +1,5 @@
+import { KartCard } from "../kartCard";
+
 const Kart = () => {
   return (
     <section className="d-flex flex-column">
@@ -6,8 +8,12 @@ const Kart = () => {
         <h5 className="m-0">Itens: 3</h5>
         <h5 className="m-0">Total: R$ 680,00</h5>
         <article className="bg-light p-3">
-          <p>Seu carrinho está vazio</p>
-
+          {/* <p>Seu carrinho está vazio</p> */}
+          <KartCard name={'prod 1'}/>
+          <hr />
+          <KartCard name={'prod 2'}/>
+          <hr />
+          <KartCard name={'prod 3'}/>
         </article>
         <button className="btn btn-danger mt-3">Limpar</button>
       </article>
