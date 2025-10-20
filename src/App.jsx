@@ -1,6 +1,7 @@
 import Footer from './components/footer'
 import ListaProdutos from './components/listaProdutos'
 import Header from './components/header'
+import Kart from './components/kart'
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
     <>
       <main>
         <Header />
+        <Kart />
         <ListaProdutos />
         <Footer />
       </main>
