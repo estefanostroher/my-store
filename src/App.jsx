@@ -9,8 +9,10 @@ function App() {
     <>
       <main>
         <Header />
-        <Kart />
-        <ListaProdutos />
+        <section className='d-flex flex-column gap-3' style={{padding: '0 15rem'}}>
+          <Kart />
+          <ListaProdutos />
+        </section>
         <Footer />
       </main>
       
