@@ -1,8 +1,8 @@
 import './style.css';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
 
-const ListaProdutos = ({produtos, setProdutos}) => {
+const ListaProdutos = ({produtos, setProdutos, setCarrinho}) => {
 
     useEffect(() => {
         try {
@@ -16,7 +16,7 @@ const ListaProdutos = ({produtos, setProdutos}) => {
         } catch (error) {
             console.error('Erro ao buscar produtos:', error);
         }
-    }, []);
+    }, [setProdutos]);
 
     const renderEstrelas = (nota) => {
         const estrelas = [];
@@ -36,39 +36,15 @@ const ListaProdutos = ({produtos, setProdutos}) => {
         return estrelas;
     };
 
-    const handleComprar = async (produto) => {
+    const handleAdicionarAoCarrinho = (produto) => {
         if (produto.quantidade <= 0) {
             alert('Produto indisponível no estoque!');
             return;
         }
 
-        try {
-            const novaQuantidade = produto.quantidade - 1;
-
-            const response = await fetch(`http://localhost:3001/produtos/${produto.id}`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    quantidade: novaQuantidade
-                }),
-            });
-
-            if (response.ok) {
-                alert('Compra realizada com sucesso!');
-
-                // Atualiza o estado local
-                setProdutos(produtos.map(p =>
-                    p.id === produto.id ? { ...p, quantidade: novaQuantidade } : p
-                ));
-            } else {
-                alert('Erro ao processar a compra. Tente novamente.');
-            }
-        } catch (error) {
-            console.error('Erro ao comprar produto:', error);
-            alert('Erro ao processar a compra. Tente novamente.');
-        }
+        // Adiciona o produto ao carrinho
+        setCarrinho(prev => [...prev, produto]);
+        alert('Produto adicionado ao carrinho!');
     };
 
     return (
@@ -99,10 +75,10 @@ const ListaProdutos = ({produtos, setProdutos}) => {
                             <div className="produto-acoes">
                                 <button
                                     className="btn-comprar"
-                                    onClick={() => handleComprar(produto)}
+                                    onClick={() => handleAdicionarAoCarrinho(produto)}
                                     disabled={produto.quantidade <= 0}
                                 >
-                                    {produto.quantidade > 0 ? 'Comprar Agora' : 'Indisponível'}
+                                    {produto.quantidade > 0 ? 'Adicionar ao Carrinho' : 'Indisponível'}
                                 </button>
                             </div>
                         </div>

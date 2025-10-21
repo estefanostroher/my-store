@@ -7,14 +7,15 @@ import { useState } from 'react'
 
 function App() {
   const [produtos, setProdutos] = useState([])
+  const [carrinho, setCarrinho] = useState([])
 
   return (
     <>
       <main>
         <Header />
         <section className='d-flex flex-column gap-3' style={{padding: '0 15rem'}}>
-          <Kart produtos={produtos} setProdutos={setProdutos}/>
-          <ListaProdutos produtos={produtos} setProdutos={setProdutos}/>
+          <Kart carrinho={carrinho} setCarrinho={setCarrinho} produtos={produtos} setProdutos={setProdutos}/>
+          <ListaProdutos produtos={produtos} setProdutos={setProdutos} carrinho={carrinho} setCarrinho={setCarrinho}/>
         </section>
         <Footer />
       </main>
