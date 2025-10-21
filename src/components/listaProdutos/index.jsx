@@ -2,9 +2,7 @@ import './style.css';
 import { useState, useEffect } from 'react';
 import { FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
 
-const ListaProdutos = () => {
-
-    const [produtos, setProdutos] = useState([]);
+const ListaProdutos = ({produtos, setProdutos}) => {
 
     useEffect(() => {
         try {
