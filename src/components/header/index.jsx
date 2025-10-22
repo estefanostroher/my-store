@@ -1,7 +1,11 @@
+import cart from '../../assets/kart-icon.svg';
+
 const Header = () => {
     return (
-        <header className="d-flex align-items-center header-container  justify-content-center bg-primary color-white text-white">
-            <h1>Minha Loja</h1>
+        <header className="d-flex align-items-center header-container  justify-content-center bg-primary color-white">
+            <a href="/" style={{textDecoration: 'none'}}>
+                <h1 className="text-white">Minha Loja</h1>
+            </a>
         </header>
     )
 }
