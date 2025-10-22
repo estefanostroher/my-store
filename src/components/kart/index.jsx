@@ -66,7 +66,7 @@ const Kart = ({carrinho, setCarrinho, produtos, setProdutos}) => {
   };
 
   return (
-    <section className="d-flex flex-column">
+    <section className="d-flex flex-column m-3">
       <h2 className="m-0">Carrinho</h2>
       <article className="p-3 rounded" style={{ backgroundColor: 'gray' }}>
         <h5 className="m-0">Itens: {carrinho.length}</h5>
