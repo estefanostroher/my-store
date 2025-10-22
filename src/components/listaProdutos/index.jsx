@@ -1,8 +1,10 @@
 import './style.css';
 import { useEffect } from 'react';
 import { FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const ListaProdutos = ({produtos, setProdutos, setCarrinho}) => {
+    const navigate = useNavigate();
 
     useEffect(() => {
         try {
@@ -44,7 +46,10 @@ const ListaProdutos = ({produtos, setProdutos, setCarrinho}) => {
 
         // Adiciona o produto ao carrinho
         setCarrinho(prev => [...prev, produto]);
-        alert('Produto adicionado ao carrinho!');
+    };
+
+    const handleVerProduto = (produtoId) => {
+        navigate(`/produto/${produtoId}`);
     };
 
     return (
@@ -56,8 +61,8 @@ const ListaProdutos = ({produtos, setProdutos, setCarrinho}) => {
             <div className="produtos-grid">
                 {produtos.map(produto => (
                     <div key={produto.id} className="produto-card">
-                        <div className="produto-imagem">
-                            <img src={produto.imagem} alt={produto.nome} />
+                        <div className="produto-imagem" onClick={() => handleVerProduto(produto.id)} style={{cursor: 'pointer'}}>
+                            <img src={`/${produto.imagem}`} alt={produto.nome} />
                         </div>
                         
                         <div className="produto-info">
