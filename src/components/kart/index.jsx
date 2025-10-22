@@ -66,35 +66,37 @@ const Kart = ({carrinho, setCarrinho, produtos, setProdutos}) => {
   };
 
   return (
-    <section className="d-flex flex-column">
-      <h2 className="m-0">Carrinho</h2>
-      <article className="p-3 rounded" style={{ backgroundColor: 'gray' }}>
-        <h5 className="m-0">Itens: {carrinho.length}</h5>
-        <h5 className="m-0">Total: R$ {totalPrice.toFixed(2)}</h5>
-        <article className="bg-light p-3">
-          {
-            carrinho.length === 0 ? <p>Seu carrinho está vazio</p> :
-            carrinho.map((produto, index) => (
-              <>
-                <KartCard name={produto.nome} price={produto.preco} onRemove={()=>handleRemove(index)}/>
-                <hr />
-              </>
-            ))
-          }
+    <div style={{height: '90vh', padding: '4rem 15rem'}}>
+      <section className="d-flex flex-column">
+        <h2 className="m-0">Carrinho</h2>
+        <article className="p-3 rounded" style={{ backgroundColor: 'gray' }}>
+          <h5 className="m-0">Itens: {carrinho.length}</h5>
+          <h5 className="m-0">Total: R$ {totalPrice.toFixed(2)}</h5>
+          <article className="bg-light p-3">
+            {
+              carrinho.length === 0 ? <p>Seu carrinho está vazio</p> :
+              carrinho.map((produto, index) => (
+                <>
+                  <KartCard name={produto.nome} price={produto.preco} onRemove={()=>handleRemove(index)}/>
+                  <hr />
+                </>
+              ))
+            }
+          </article>
+          <div className="d-flex gap-2">
+            <button 
+              className="btn btn-danger mt-3"
+              onClick={() => setCarrinho([])}
+            >Limpar</button>
+            <button 
+              className="btn btn-success mt-3"
+              onClick={handleFinalizarCompra}
+              disabled={carrinho.length === 0}
+            >Finalizar Compra</button>
+          </div>
         </article>
-        <div className="d-flex gap-2">
-          <button 
-            className="btn btn-danger mt-3"
-            onClick={() => setCarrinho([])}
-          >Limpar</button>
-          <button 
-            className="btn btn-success mt-3"
-            onClick={handleFinalizarCompra}
-            disabled={carrinho.length === 0}
-          >Finalizar Compra</button>
-        </div>
-      </article>
-    </section>
+      </section>
+    </div>
   );
 };
 
