@@ -3,6 +3,7 @@ import ListaProdutos from './components/listaProdutos'
 import Header from './components/header'
 import Kart from './components/kart'
 import ProductDescription from './components/productDescription'
+import ErrorPage from './components/errorPage'
 
 import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -28,6 +29,7 @@ function App() {
           }/>
           <Route path="/carrinho" element={<Kart carrinho={carrinho} setCarrinho={setCarrinho} produtos={produtos} setProdutos={setProdutos}/>}/>
           <Route path="/produto/:id" element={<ProductDescription setCarrinho={setCarrinho} />} />
+          <Route path='*' element={<ErrorPage />} />
         </Routes>
         <Footer />
       </main>
