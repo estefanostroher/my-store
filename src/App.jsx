@@ -18,14 +18,14 @@ function App() {
 
   return (
     <Router>
-      <main>
+      <main className="d-flex flex-column vw-100 vh-100">
         <Header />
         <Routes>
           <Route path="/" element={
           <>
             <KartButton items={items}/>
             <ListaProdutos produtos={produtos} setProdutos={setProdutos} carrinho={carrinho} setCarrinho={setCarrinho}/>
-          </>  
+          </>
           }/>
           <Route path="/carrinho" element={<Kart carrinho={carrinho} setCarrinho={setCarrinho} produtos={produtos} setProdutos={setProdutos}/>}/>
           <Route path="/produto/:id" element={<ProductDescription setCarrinho={setCarrinho} />} />

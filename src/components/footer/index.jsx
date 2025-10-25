@@ -1,9 +1,7 @@
-import './style.css';
-
 const Footer = () => {
     return (
-        <footer className="footer-container">
-            <p className="footer-title">Direitos Autorais. 2025.</p>
+        <footer className="d-flex justify-content-center bg-primary align-items-center p-3 text-white">
+            <p className="m-0">Direitos Autorais. 2025.</p>
         </footer>
     );
 };
