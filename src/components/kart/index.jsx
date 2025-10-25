@@ -36,7 +36,7 @@ const Kart = ({carrinho, setCarrinho, produtos, setProdutos}) => {
         
         const novaQuantidade = produto.quantidade - quantidade;
 
-        const response = await fetch(`http://localhost:3001/produtos/${produtoId}`, {
+        const response = await fetch(`https://json-server-produtos-96fx.onrender.com/produtos/${produtoId}`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',

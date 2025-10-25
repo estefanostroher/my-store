@@ -12,7 +12,7 @@ const ProductDescription = ({ setCarrinho }) => {
     useEffect(() => {
         const fetchProduto = async () => {
             try {
-                const response = await fetch(`http://localhost:3001/produtos/${id}`)
+                const response = await fetch(`https://json-server-produtos-96fx.onrender.com/produtos/${id}`)
                 const data = await response.json()
                 setProduto(data)
                 setLoading(false)

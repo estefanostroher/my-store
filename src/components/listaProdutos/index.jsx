@@ -9,7 +9,7 @@ const ListaProdutos = ({produtos, setProdutos, setCarrinho}) => {
     useEffect(() => {
         try {
             const fetchProdutos = async () => {
-                const response = await fetch('http://localhost:3001/produtos');
+                const response = await fetch('https://json-server-produtos-96fx.onrender.com/produtos');
                 const data = await response.json();
                 setProdutos(data);
             };
