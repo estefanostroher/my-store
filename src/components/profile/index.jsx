@@ -1,32 +1,32 @@
 import { useEffect, useState } from "react";
+import { SaleInfo } from "./saleInfo";
+import { callAPI } from "../../API";
 
 const Profile = () => {
   const [filtro, setFiltro] = useState("");
   const [vendas, setVendas] = useState([]);
   const [produtos, setProdutos] = useState([]);
 
-  const fetchVendas = async () => {
-    const response = await fetch(
-      "https://json-server-produtos-96fx.onrender.com/vendas"
-    );
-    const data = await response.json();
-    setVendas(data);
-  };
+  const fetchData = async () => {
+    const dataVendas = await callAPI("vendas");
+    const dataProdutos = await callAPI("produtos");
 
-  const fetchProdutos = async () => {
-    const response = await fetch(
-      "https://json-server-produtos-96fx.onrender.com/produtos"
-    );
-    const data = await response.json();
-    setProdutos(data);
-  };
+    setVendas(dataVendas);
+    setProdutos(dataProdutos);
+  }
 
   useEffect(() => {
-    fetchVendas();
-    fetchProdutos();
+    fetchData();
   }, []);
 
-  console.log(produtos);
+  const vendasFiltradas = vendas.filter((venda) => {
+    if (filtro === "") return true;
+  
+    return venda.itens.some((item) => 
+      item.nome.includes(filtro.toLowerCase()
+    ))
+  })
+
 
   return (
     <section className="d-flex flex-column align-items-center h-100 p-4 gap-5">
@@ -76,33 +76,15 @@ const Profile = () => {
           <button className="py-2 px-4 border-0 rounded-end">Filtrar</button>
         </article>
         <article className="bg-secondary p-4 rounded">
-            {vendas !== null && vendas.length > 0 ? (
-              vendas.map((venda) => (
+            {vendasFiltradas !== null && vendasFiltradas.length > 0 ? (
+              vendasFiltradas.map((venda, index) => (
                 <>
-                <a href="/" key={venda.id} className="px-4 text-white text-decoration-none">
-                    <article className="d-flex justify-content-between">
-                        <h4>
-                            Venda {venda.id}
-                        </h4>
-                        <h4>
-                            Total {venda.total.toFixed(2)}
-                        </h4>
-                    </article>
-                    <h4 className="mb-5">Produtos</h4>
-                    <article>
-                       { venda.itens.map((item) => (
-                        <div key={item.produtoId} className="d-flex justify-content-between">
-                            <p>{item.nome}</p>
-                            <p>preço {item.preco}</p>
-                        </div>
-                        ))}
-                    </article>
-                </a>
+                <SaleInfo venda={venda} />
                 <hr className="text-white"/>
                 </>
               ))
             ) : (
-              <p>Nenhuma venda registrada.</p>
+              <p className="text-white">Nenhuma venda registrada.</p>
             )}
         </article>
       </article>

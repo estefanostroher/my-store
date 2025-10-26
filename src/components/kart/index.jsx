@@ -1,3 +1,4 @@
+import { sendToAPI } from "../../API";
 import { KartCard } from "../kartCard";
 
 const Kart = ({carrinho, setCarrinho, produtos, setProdutos, venda, setVenda}) => {
@@ -62,14 +63,7 @@ const Kart = ({carrinho, setCarrinho, produtos, setProdutos, venda, setVenda}) =
         total: totalPrice
       };
 
-      const vendaResponse = await fetch('https://json-server-produtos-96fx.onrender.com/vendas', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(vendaRealizada),
-      });
-      
+      await sendToAPI(vendaRealizada);
 
       alert('Compra finalizada com sucesso!');
       setCarrinho([]);
