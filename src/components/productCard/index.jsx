@@ -15,7 +15,7 @@ export const ProductCard = ({
       className="border rounded d-flex flex-column text-center gap-2 pb-2"
       key={id}
     >
-      <button className="p-0 rounded-top btn" onClick={handleVerProduto}>
+      <button className="p-0 rounded-top btn" onClick={() => handleVerProduto(id)}>
         <img
           src={imagem}
           alt="Product"
