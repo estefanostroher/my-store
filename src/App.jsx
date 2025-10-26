@@ -8,13 +8,14 @@ import ErrorPage from './components/errorPage'
 import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { KartButton } from './components/kartButton'
+import Profile from './components/profile'
 
 function App() {
   const [produtos, setProdutos] = useState([]);
   const [carrinho, setCarrinho] = useState([]);
+  const [vendas, setVendas] = useState([]);
 
   const items = carrinho.length;
-  console.log(carrinho);
 
   return (
     <Router>
@@ -27,8 +28,9 @@ function App() {
             <ListaProdutos produtos={produtos} setProdutos={setProdutos} carrinho={carrinho} setCarrinho={setCarrinho}/>
           </>
           }/>
-          <Route path="/carrinho" element={<Kart carrinho={carrinho} setCarrinho={setCarrinho} produtos={produtos} setProdutos={setProdutos}/>}/>
+          <Route path="/carrinho" element={<Kart carrinho={carrinho} setCarrinho={setCarrinho} produtos={produtos} setProdutos={setProdutos} venda={vendas} setVenda={setVendas}/>}/>
           <Route path="/produto/:id" element={<ProductDescription setCarrinho={setCarrinho} />} />
+          <Route path="/profile/" element={<Profile produtos={produtos}/>} />
           <Route path='*' element={<ErrorPage />} />
         </Routes>
         <Footer />

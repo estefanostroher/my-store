@@ -1,6 +1,6 @@
 import { KartCard } from "../kartCard";
 
-const Kart = ({carrinho, setCarrinho, produtos, setProdutos}) => {
+const Kart = ({carrinho, setCarrinho, produtos, setProdutos, venda, setVenda}) => {
   const totalPrice = carrinho.reduce((acc, produto) => acc + produto.preco, 0);
 
   const handleRemove = (indexToRemove) => {
@@ -56,6 +56,20 @@ const Kart = ({carrinho, setCarrinho, produtos, setProdutos}) => {
           return;
         }
       }
+
+      const vendaRealizada = {
+        itens: carrinho.map(p => ({ produtoId: p.id, nome: p.nome, preco: p.preco })),
+        total: totalPrice
+      };
+
+      const vendaResponse = await fetch('https://json-server-produtos-96fx.onrender.com/vendas', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(vendaRealizada),
+      });
+      
 
       alert('Compra finalizada com sucesso!');
       setCarrinho([]);
