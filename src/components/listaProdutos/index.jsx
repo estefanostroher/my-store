@@ -1,7 +1,7 @@
-import './style.css';
 import { useEffect } from 'react';
 import { FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { ProductCard } from '../productCard';
 
 const ListaProdutos = ({produtos, setProdutos, setCarrinho}) => {
     const navigate = useNavigate();
@@ -53,41 +53,25 @@ const ListaProdutos = ({produtos, setProdutos, setCarrinho}) => {
     };
 
     return (
-        <div className="lista-produtos">
-            <div className="lista-produtos-header">
-                <h2 className="lista-produtos-title">Lista de Produtos</h2>
-            </div>
+        <div className="d-flex flex-column align-items-center h-100 py-4">
+            <article className='w-75 py-2'>
+                <h2 className="fw-bold text-start">Lista de Produtos</h2>            
+            </article>
             
-            <div className="produtos-grid">
+            <div className="d-flex gap-4 flex-wrap w-75">
                 {produtos.map(produto => (
-                    <div key={produto.id} className="produto-card">
-                        <div className="produto-imagem" onClick={() => handleVerProduto(produto.id)} style={{cursor: 'pointer'}}>
-                            <img src={`/${produto.imagem}`} alt={produto.nome} />
-                        </div>
-                        
-                        <div className="produto-info">
-                            <h3 className="produto-nome">{produto.nome}</h3>
-                            <div className="produto-nota">
-                                {renderEstrelas(produto.nota || 0)}
-                            </div>
-                            <div className="produto-preco">
-                                <span className="preco-valor">R$ {produto.preco.toFixed(2).replace('.', ',')}</span>
-                            </div>
-                            <div className="produto-estoque">
-                                <span>Estoque: {produto.quantidade}</span>
-                            </div>
-
-                            <div className="produto-acoes">
-                                <button
-                                    className="btn-comprar"
-                                    onClick={() => handleAdicionarAoCarrinho(produto)}
-                                    disabled={produto.quantidade <= 0}
-                                >
-                                    {produto.quantidade > 0 ? 'Adicionar ao Carrinho' : 'Indisponível'}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    <ProductCard 
+                        key={produto.id}
+                        id={produto.id}
+                        imagem={produto.imagem}
+                        nome={produto.nome}
+                        nota={produto.nota}
+                        preco={produto.preco}
+                        quantidade={produto.quantidade}
+                        handleAdicionarAoCarrinho={handleAdicionarAoCarrinho}
+                        handleVerProduto={handleVerProduto}
+                        renderEstrelas={renderEstrelas}
+                    />
                 ))}
             </div>
         </div>

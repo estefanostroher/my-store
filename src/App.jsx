@@ -18,7 +18,7 @@ function App() {
 
   return (
     <Router>
-      <main className="d-flex flex-column vw-100 vh-100">
+      <main className="d-flex flex-column vw-100">
         <Header />
         <Routes>
           <Route path="/" element={
