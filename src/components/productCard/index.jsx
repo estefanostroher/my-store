@@ -1,5 +1,3 @@
-import fundo from "../../assets/fundo-preto.jpg";
-
 export const ProductCard = ({
   id,
   imagem,
@@ -19,7 +17,7 @@ export const ProductCard = ({
     >
       <button className="p-0 rounded-top btn" onClick={() => handleVerProduto(id)}>
         <img
-          src={imagem || fundo}
+          src={imagem}
           alt="Product"
           className="rounded-top"
           width={170}

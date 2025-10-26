@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FaStar, FaRegStar, FaStarHalfAlt, FaArrowLeft } from "react-icons/fa";
-import fundo from "../../assets/fundo-preto.jpg";
 
 const ProductDescription = ({ setCarrinho }) => {
   const { id } = useParams();
@@ -73,7 +72,7 @@ const ProductDescription = ({ setCarrinho }) => {
         </article>
         <article className="rounded shadow p-5 w-75 d-flex gap-5">
           <img
-            src={`/${produto.imagem}` || fundo}
+            src={`/${produto.imagem}`}
             alt={produto.nome}
             className="rounded w-100"
           />
