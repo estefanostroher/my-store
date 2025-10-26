@@ -72,7 +72,7 @@ const ProductDescription = ({ setCarrinho }) => {
         </article>
         <article className="rounded shadow p-5 w-75 d-flex gap-5">
           <img
-            src={`/${produto.imagem}`}
+            src={produto.imagem}
             alt={produto.nome}
             className="rounded w-100"
           />
