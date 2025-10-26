@@ -65,6 +65,7 @@ const Kart = ({carrinho, setCarrinho, produtos, setProdutos}) => {
     }
   };
 
+
   return (
     <div style={{height: '90vh', padding: '4rem 15rem'}}>
       <section className="d-flex flex-column">

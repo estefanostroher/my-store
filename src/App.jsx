@@ -14,7 +14,7 @@ function App() {
   const [carrinho, setCarrinho] = useState([]);
 
   const items = carrinho.length;
-  console.log(items);
+  console.log(carrinho);
 
   return (
     <Router>

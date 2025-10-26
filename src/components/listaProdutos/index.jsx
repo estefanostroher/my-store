@@ -71,6 +71,7 @@ const ListaProdutos = ({produtos, setProdutos, setCarrinho}) => {
                         handleAdicionarAoCarrinho={handleAdicionarAoCarrinho}
                         handleVerProduto={handleVerProduto}
                         renderEstrelas={renderEstrelas}
+                        produto={produto}
                     />
                 ))}
             </div>

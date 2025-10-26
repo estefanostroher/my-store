@@ -8,6 +8,7 @@ export const ProductCard = ({
   handleAdicionarAoCarrinho,
   handleVerProduto,
   renderEstrelas,
+  produto
 }) => {
   return (
     <section
@@ -33,7 +34,7 @@ export const ProductCard = ({
         className={`btn ${
           quantidade > 0 ? "btn-outline-success" : "btn-outline-danger"
         } w-75 align-self-center`}
-        onClick={handleAdicionarAoCarrinho}
+        onClick={() => handleAdicionarAoCarrinho(produto)}
         disabled={quantidade <= 0}
       >
         {quantidade > 0 ? "Comprar" : "Indisponível"}
