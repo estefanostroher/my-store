@@ -30,7 +30,7 @@ function App() {
           }/>
           <Route path="/carrinho" element={<Kart carrinho={carrinho} setCarrinho={setCarrinho} produtos={produtos} setProdutos={setProdutos} venda={vendas} setVenda={setVendas}/>}/>
           <Route path="/produto/:id" element={<ProductDescription setCarrinho={setCarrinho} />} />
-          <Route path="/profile/" element={<Profile produtos={produtos}/>} />
+          <Route path="/profile" element={<Profile produtos={produtos}/>} />
           <Route path='*' element={<ErrorPage />} />
         </Routes>
         <Footer />
